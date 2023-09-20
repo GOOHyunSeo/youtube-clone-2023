@@ -11,6 +11,6 @@ const userRouter = express.Router();
 userRouter.get("/logout", logout);
 userRouter.get("/edit", edit);
 userRouter.get("/delete", deleteUser);
-userRouter.get("/:id", seeProfile);
+userRouter.get("/:id(\\d+)", seeProfile);
 
 export default userRouter;
