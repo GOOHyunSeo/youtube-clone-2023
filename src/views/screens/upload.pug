@@ -1,0 +1,12 @@
+extends ../base
+
+block contents
+    if err
+        span=err._message
+    form(method="POST")
+        input(type="file", name="video")
+        input(type="file", name="thumbnail")
+        input(placeholder="Title", type="text", name="title",maxlength="80")
+        input(placeholder="description", type="text", name="description",minlength="5")
+        input(placeholder="Hashtags, seperated by ,", type="text", name="hashtags")
+        input(type="submit" value="Upload Video")

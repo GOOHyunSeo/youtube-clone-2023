@@ -1,0 +1,9 @@
+extends ../base
+
+block contents
+    h2 Change Title of #{video.title}
+    form(method="POST")
+        input(name="title", placeholder="change title", type="text", ,maxlength="80",value=video.title, required)
+        input(name="description",placeholder="Description", type="text",  minlength="20", value=video.description, required)
+        input( name="hashtags",placeholder="Hashtags, separated by comma.", type="text", value=video.hashtags.join())
+        input(type="submit", value="Submit")
