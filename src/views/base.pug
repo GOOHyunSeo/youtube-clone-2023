@@ -4,7 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title #{pageTitle} | YouTube
+        title #{pageTitle} | #{siteName}
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body 
         header
@@ -13,13 +13,19 @@ html(lang="en")
                     li  
                         a(href="/") Home
                     li  
-                        a(href="/login") Login
-                    li  
-                        a(href="/join") Join
-                    li  
                         a(href="/videos/upload") Upload
                     li  
                         a(href="/search") Search
+                    if loggedIn
+                        li  
+                            a(href="/logout") Logout
+                    else
+                        li  
+                            a(href="/login") Login
+                        li  
+                            a(href="/join") Join
+            if loggedIn
+                span hello #{loggedInUser.username}
             h1=pageTitle 
         main
             block contents
