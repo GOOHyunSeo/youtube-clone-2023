@@ -9,7 +9,7 @@ export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await videoModel.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "Video Not Found" });
+    return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   return res.render("screens/watch", { pageTitle: "WATCH", video });
 };
@@ -28,7 +28,9 @@ export const postUpload = async (req, res) => {
     return res.redirect("/");
   } catch (err) {
     console.log(err);
-    return res.render("screens/upload", { pageTitle: "UPLOAD", err });
+    return res
+      .status(400)
+      .render("screens/upload", { pageTitle: "UPLOAD", err });
   }
 };
 
@@ -36,7 +38,7 @@ export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await videoModel.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "Video Not Found" });
+    return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   return res.render("screens/edit", {
     pageTitle: `EDIT`,
@@ -48,7 +50,7 @@ export const postEdit = async (req, res) => {
   const { title, description, hashtags } = req.body;
   const video = await videoModel.findById(id);
   if (!video) {
-    return res.render("404", { pageTitle: "Video Not Found" });
+    return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   await videoModel.findByIdAndUpdate(id, {
     title,

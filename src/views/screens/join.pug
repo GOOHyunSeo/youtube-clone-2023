@@ -1,0 +1,13 @@
+extends ../base
+
+block contents
+    if(err_message)
+        span=err_message
+    form(method="post")
+        input(name="username", type="text", placeholder="Username", required)
+        input(name="email", type="email", placeholder="Email", required)
+        input(name="password", type="password", placeholder="Password", required)
+        input(name="password2", type="password", placeholder="Check Password Match", required)
+        input(name="name", type="text", placeholder="Name")
+        input(name="location", type="text", placeholder="Location")
+        input(type="submit", value="Join")
