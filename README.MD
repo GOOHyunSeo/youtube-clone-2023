@@ -159,3 +159,66 @@ https://mongoosejs.com/docs/middleware.html#notes
 ### regex
 
 https://www.mongodb.com/docs/manual/reference/operator/query/regex/
+https://www.mongodb.com/docs/manual/reference/operator/query/or/
+
+### bcrypt 로 PW 암호화하기
+
+https://github.com/kelektiv/node.bcrypt.js#readme
+
+`$ npm install bcrypt`
+
+### \***\*Status Codes\*\***
+
+https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+
+### middleware \***\*Sessions로\*\*** express에서 session을 처리하기
+
+https://github.com/expressjs/session#readme
+
+`$ npm install express-session`
+
+### req.session 으로 session에 정보 추가하기
+
+https://github.com/expressjs/session#reqsession
+
+### res.locals 으로 모든 template에서 사용가능한 variables 만들고 사용하기
+
+https://expressjs.com/en/api.html#res.locals
+
+### \***\*connect-mongo로\*\*** 세션을 MongoDB에 저장하기
+
+https://github.com/jdesboeufs/connect-mongo#readme
+
+`$ npm install connect-mongo`
+
+### \***\*cookie\*\***
+
+https://expressjs.com/en/api.html#res.cookie
+
+COOKIE_SECRET에 넣을 랜덤 문자열 생성 사이트 https://randomkeygen.com/
+
+### dotenv로 .env파일을 읽고 변수를 process.env안에 넣기
+
+https://github.com/motdotla/dotenv#readme
+
+`$ npm install dotenv --save`
+
+### Google \***\*OAuth2.0\*\***
+
+> [참고 블로그]
+>
+> [https://velog.io/@tkdfo93/구글-OAuth2.0-Final-Project](https://velog.io/@tkdfo93/%EA%B5%AC%EA%B8%80-OAuth2.0-Final-Project)
+>
+> [https://velog.io/@mainfn/Node.js-express로-구글-OAuth-회원가입로그인-구현](https://velog.io/@mainfn/Node.js-express%EB%A1%9C-%EA%B5%AC%EA%B8%80-OAuth-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B5%AC%ED%98%84)
+>
+> [https://velog.io/@young224/Google-OAuth-기능-구현](https://velog.io/@young224/Google-OAuth-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
+
+**구글 OAuth 2 공식문서**
+
+https://developers.google.com/identity/protocols/oauth2?hl=ko
+
+https://developers.google.com/identity/protocols/oauth2/web-server#httprest_2
+
+**구글 클라우드 플랫폼**
+
+https://console.cloud.google.com/apis/credentials?hl=ko&project=true-energy-400119&supportedpurview=project
