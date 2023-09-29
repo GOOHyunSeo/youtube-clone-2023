@@ -18,14 +18,14 @@ html(lang="en")
                         a(href="/search") Search
                     if loggedIn
                         li  
-                            a(href="/logout") Logout
+                            a(href="users/logout") Logout
                     else
                         li  
                             a(href="/login") Login
                         li  
                             a(href="/join") Join
             if loggedIn
-                span hello #{loggedInUser.username}
+                span hello #{loggedInUser.name}
             h1=pageTitle 
         main
             block contents

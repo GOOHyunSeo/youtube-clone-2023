@@ -4,8 +4,10 @@ block contents
     if(err_message)
         span=err_message
     form(method="post")
-        input(name="username", type="text", placeholder="Username", required)
+        input(name="name", type="text", placeholder="Name", required)
         input(name="password", type="password", placeholder="Password", required)
         input(type="submit", value="Login")
-    br
+        br
+        a(href="/users/google/start") Continue With GoogleAccount &rarr;
+    hr
     a(href="/join") Create Account? &rarr;
