@@ -222,3 +222,15 @@ https://developers.google.com/identity/protocols/oauth2/web-server#httprest_2
 **구글 클라우드 플랫폼**
 
 https://console.cloud.google.com/apis/credentials?hl=ko&project=true-energy-400119&supportedpurview=project
+
+### req.session.destroy() 으로 세션 없애기
+
+### middleware \***\*Multer로 파일 업로드하기\*\***
+
+https://github.com/expressjs/multer#readme
+
+`$ npm install --save multer`
+
+### 절대! DB에는! 파일을 저장하지 않는다! 대신! 파일의 위치를! 저장한다!
+
+### 유저를 믿지 마라! 프론트에서 보이지 않아도 백에서도 보호해야한다.
