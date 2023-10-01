@@ -1,5 +1,3 @@
-# youtube-clone
-
 ## global Router
 
 / -> Home
@@ -113,6 +111,8 @@ mongoose 를 설치하기 전에 mongoDB가 잘 작동하는지 확인해야한�
 `$ mongosh` mongo shell 안으로 들어가게 해주는 말
 
 ### mongoose 설치
+
+https://github.com/expressjs/morgan#readme
 
 `npm install mongoose`
 

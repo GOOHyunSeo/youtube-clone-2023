@@ -1,0 +1,13 @@
+extends ../base
+
+block contents 
+    if err_message
+        span=err_message
+    form(method="POST")
+        input(name="name", type="text", placeholder="Name", value=loggedInUser.name,required)
+        input(name="email", type="email", placeholder="Email", value=loggedInUser.email,required)
+        input(name="location", type="text", placeholder="Location",value=loggedInUser.location)
+        input(type="submit", value="Edit Profile") 
+        if !loggedInUser.socialOnly
+            hr
+            a(href="/users/change-password") Change PW &rarr;

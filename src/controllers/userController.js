@@ -36,7 +36,10 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect("/login");
   } catch (err) {
-    return res.status(400).render("screens/join", { pageTitle: "JOIN", err });
+    console.log(err);
+    return res
+      .status(400)
+      .render("screens/join", { pageTitle: "JOIN", err_message: err });
   }
 };
 
@@ -140,6 +143,80 @@ export const logout = (req, res) => {
   return res.redirect("/");
 };
 
-export const seeProfile = (req, res) => res.send("profileUser");
-export const edit = (req, res) => res.send("editUser");
+export const getEdit = (req, res) => {
+  return res.render("screens/edit-profile", { pageTitle: "EDIT PROFILE" });
+};
+export const postEdit = async (req, res) => {
+  const pageTitle = "EDIT PROFILE";
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { name, email, location },
+  } = req;
+  if (req.session.user.name !== name) {
+    const existName = await userModel.findOne({ name });
+    if (existName) {
+      return res.status(400).render("screens/edit-profile", {
+        pageTitle,
+        err_message: "This Name already exist.",
+      });
+    }
+  }
+  if (req.session.user.email !== email) {
+    const existEmail = await userModel.findOne({ email });
+    if (existEmail) {
+      return res.status(400).render("screens/edit-profile", {
+        pageTitle,
+        err_message: "This Email already exist.",
+      });
+    }
+  }
+  const updatedUser = await userModel.findByIdAndUpdate(
+    _id,
+    {
+      name,
+      email,
+      location,
+    },
+    { new: true }
+  );
+  req.session.user = updatedUser;
+  return res.redirect("/users/edit");
+};
+
+export const getChangePassword = (req, res) => {
+  if (req.session.user.socialOnly === true) {
+    return res.redirect("/");
+  }
+  return res.render("screens/change-password", { pageTitle: "CHANGE PW" });
+};
+export const postChangePassword = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    body: { oldPassword, newPassword, newPassword2 },
+  } = req;
+  const user = await userModel.findById(_id);
+  const ok = await bcrypt.compare(oldPassword, user.password);
+  if (!ok) {
+    return res.status(400).render("screens/change-password", {
+      pageTitle: "CHANGE PW",
+      err_message: "Old Password is incorrect.",
+    });
+  }
+  if (newPassword !== newPassword2) {
+    return res.status(400).render("screens/change-password", {
+      pageTitle: "CHANGE PW",
+      err_message: "Password did not match.",
+    });
+  }
+  user.password = newPassword;
+  await user.save();
+  req.session.destroy();
+  return res.redirect("/login");
+};
+
+export const seeProfile = (req, res) => res.send("see profileUser");
 export const deleteUser = (req, res) => res.send("deleteUser");
