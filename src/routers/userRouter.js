@@ -10,13 +10,21 @@ import {
   getChangePassword,
   postChangePassword,
 } from "../controllers/userController";
-import { protectorMiddleware, publicOnlyMiddleware } from "../middleware";
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
+  pictureUpload,
+} from "../middleware";
 
 const userRouter = express.Router();
 
 userRouter.get("/google/start", publicOnlyMiddleware, startGoogleLogin);
 userRouter.get("/google/finish", publicOnlyMiddleware, finishGoogleLogin);
-userRouter.route("/edit").all(protectorMiddleware).get(getEdit).post(postEdit);
+userRouter
+  .route("/edit")
+  .all(protectorMiddleware)
+  .get(getEdit)
+  .post(pictureUpload.single("picture"), postEdit);
 userRouter
   .route("/change-password")
   .all(protectorMiddleware)

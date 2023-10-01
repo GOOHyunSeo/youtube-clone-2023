@@ -1,4 +1,5 @@
 import videoModel from "../models/videoModel";
+import userModel from "../models/userModel";
 
 export const home = async (req, res) => {
   const videos = await videoModel.find({}).sort({ createdAt: "desc" });
@@ -7,7 +8,7 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await videoModel.findById(id);
+  const video = await videoModel.findById(id).populate("owner");
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
@@ -18,13 +19,24 @@ export const getUpload = (req, res) => {
   return res.render("screens/upload", { pageTitle: "UPLOAD" });
 };
 export const postUpload = async (req, res) => {
-  const { title, description, hashtags } = req.body;
+  const {
+    body: { title, description, hashtags },
+    file,
+    session: {
+      user: { _id },
+    },
+  } = req;
   try {
-    await videoModel.create({
+    const newVideo = await videoModel.create({
+      videoUrl: file.path,
       title,
       description,
       hashtags: videoModel.formatHashtags(hashtags),
+      owner: _id,
     });
+    const user = await userModel.findById(_id);
+    user.videos.push(newVideo._id);
+    user.save();
     return res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -40,6 +52,9 @@ export const getEdit = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
+  if (String(req.session.user._id) !== String(video.owner)) {
+    return res.status(403).redirect("/");
+  }
   return res.render("screens/edit", {
     pageTitle: `EDIT`,
     video,
@@ -52,6 +67,9 @@ export const postEdit = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
+  if (String(req.session.user._id) !== String(video.owner)) {
+    return res.status(403).redirect("/");
+  }
   await videoModel.findByIdAndUpdate(id, {
     title,
     description,
@@ -61,8 +79,19 @@ export const postEdit = async (req, res) => {
 };
 
 export const deleteVideo = async (req, res) => {
+  const { _id } = req.session.user;
   const { id } = req.params;
+  const video = await videoModel.findById(id);
+  const user = await userModel.findById(_id);
+  if (!video) {
+    return res.status(404).render("404", { pageTitle: "Video Not Found" });
+  }
+  if (String(_id) !== String(video.owner)) {
+    return res.status(403).redirect("/");
+  }
   await videoModel.findByIdAndDelete(id);
+  user.videos.splice(user.videos.indexOf(id), 1);
+  user.save();
   return res.redirect("/");
 };
 

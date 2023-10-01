@@ -1,4 +1,5 @@
 import userModel from "../models/userModel";
+import videoModel from "../models/videoModel";
 import bcrypt from "bcrypt";
 
 export const getJoin = (req, res) => {
@@ -150,9 +151,10 @@ export const postEdit = async (req, res) => {
   const pageTitle = "EDIT PROFILE";
   const {
     session: {
-      user: { _id },
+      user: { _id, pictureUrl },
     },
     body: { name, email, location },
+    file,
   } = req;
   if (req.session.user.name !== name) {
     const existName = await userModel.findOne({ name });
@@ -178,6 +180,7 @@ export const postEdit = async (req, res) => {
       name,
       email,
       location,
+      pictureUrl: file ? file.path : pictureUrl,
     },
     { new: true }
   );
@@ -218,5 +221,16 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/login");
 };
 
-export const seeProfile = (req, res) => res.send("see profileUser");
+export const seeProfile = async (req, res) => {
+  const { id } = req.params;
+  const user = await userModel.findById(id).populate("videos");
+  console.log(user);
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User Not Found" });
+  }
+  return res.render("screens/profile", {
+    pageTitle: `${user.name}'s PROFILE`,
+    user,
+  });
+};
 export const deleteUser = (req, res) => res.send("deleteUser");

@@ -1,6 +1,7 @@
 extends ../base
 
 block contents
+    video(src=`/${video.videoUrl}`,controls)
     h3=video.title
     h5 #{video.views} #{video.views === (0||1) ? "view" : "views"}
     small=video.createdAt
@@ -8,8 +9,11 @@ block contents
     ul
         each hashtags in video.hashtags
             li=hashtags
-    
-    hr
-    a(href=`${video.id}/edit`) Edit Video &rarr;
-    br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
+    h5
+        a(href=`/users/${video.owner._id}`) #{video.owner.name} 
+        |  is uploader
+    if String(loggedInUser._id) === String(video.owner._id)
+        hr
+        a(href=`${video.id}/edit`) Edit Video &rarr;
+        br
+        a(href=`${video.id}/delete`) Delete Video &rarr;

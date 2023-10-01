@@ -1,9 +1,15 @@
 extends ../base
 
 block contents 
+    if loggedInUser.socialOnly
+        image(src=`${loggedInUser.pictureUrl}` width=100 height=100) 
+    else
+        image(src=`/${loggedInUser.pictureUrl}` width=100 height=100) 
     if err_message
         span=err_message
-    form(method="POST")
+    form(method="POST", enctype="multipart/form-data")
+        label(for="picture") Picture 
+        input(name="picture",id="picture", type="file", accept="image/*")
         input(name="name", type="text", placeholder="Name", value=loggedInUser.name,required)
         input(name="email", type="email", placeholder="Email", value=loggedInUser.email,required)
         input(name="location", type="text", placeholder="Location",value=loggedInUser.location)
