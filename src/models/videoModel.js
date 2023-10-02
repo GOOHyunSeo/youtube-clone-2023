@@ -7,7 +7,7 @@ const videoSchema = mongoose.Schema({
   likes: { type: String },
   views: { type: Number, default: 0 },
   createdAt: { type: Date, required: true, default: Date.now },
-  description: { type: String, trim: true, minlength: 5 },
+  description: { type: String },
   hashtags: [{ type: String, trim: true }],
   comments: { type: String },
 });
@@ -15,7 +15,7 @@ const videoSchema = mongoose.Schema({
 videoSchema.static("formatHashtags", function (hashtags) {
   return hashtags
     .split(",")
-    .map((word) => (word.startsWith("#") ? word : `#${word}`));
+    .map((word) => (word.startsWith("#") ? word : `#${word.trim()}`));
 });
 
 const videoModel = mongoose.model("Video", videoSchema);
