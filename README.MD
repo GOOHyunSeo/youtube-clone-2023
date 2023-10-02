@@ -234,3 +234,55 @@ https://github.com/expressjs/multer#readme
 ### 절대! DB에는! 파일을 저장하지 않는다! 대신! 파일의 위치를! 저장한다!
 
 ### 유저를 믿지 마라! 프론트에서 보이지 않아도 백에서도 보호해야한다.
+
+### \***\*Webpack\*\***
+
+https://webpack.kr/
+
+프론트엔드 JS를 브라우저에서 인식가능한 JS형태로 만들어주기위함
+
+`$ npm i webpack webpack-cli -D`
+
+https://webpack.kr/guides/getting-started/
+
+### 프론트엔드의 babel 처리를 위해 babel-loader 사용하기
+
+https://github.com/babel/babel-loader
+
+`$ npm install -D babel-loader @babel/core @babel/preset-env webpack`
+
+### SCSS loader로 scss를 일반적인 css로 변환해서 프론트엔드에 적용하기
+
+- sass-loader
+  https://github.com/webpack-contrib/sass-loader
+  `$ npm install sass-loader sass webpack --save-dev`
+- css-loader
+  https://webpack.kr/loaders/css-loader/#root
+  `$ npm install --save-dev css-loader`
+- style-loader
+  https://webpack.kr/loaders/style-loader/
+  `$ npm install --save-dev style-loader`
+
+### \***\*MiniCssExtractPlugin로\*\*** js파일과 css파일을 분리시키기
+
+https://webpack.kr/plugins/mini-css-extract-plugin
+
+`$ npm install --save-dev mini-css-extract-plugin`
+
+### nodemon에 몇가지 파일이나 폴더를 무시하는 방법알려주기
+
+https://github.com/remy/nodemon#config-files
+
+```jsx
+{
+  "ignore": ["webpack.config.js", "src/client/*", "assets/*"],
+  "exec": "babel-node src/init.js"
+}
+```
+
+```jsx
+"scripts": {
+    "dev": "nodemon",
+    "assets": "webpack"
+  },
+```
