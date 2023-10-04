@@ -286,3 +286,15 @@ https://github.com/remy/nodemon#config-files
     "assets": "webpack"
   },
 ```
+
+### HTMLMediaElement
+
+https://developer.mozilla.org/ko/docs/Web/API/HTMLMediaElement
+
+### **loadedmetadata event**
+
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event
+
+### Fullscreen API
+
+https://developer.mozilla.org/ko/docs/Web/API/Fullscreen_API
