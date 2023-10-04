@@ -115,3 +115,14 @@ export const search = async (req, res) => {
 };
 
 export const setting = (req, res) => res.send("setting");
+
+export const registerView = async (req, res) => {
+  const { id } = req.params;
+  const video = await videoModel.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  video.views = video.views + 1;
+  await video.save();
+  return res.sendStatus(200);
+};

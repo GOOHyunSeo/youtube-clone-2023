@@ -82,6 +82,11 @@ const handleMouseEnter = () => {
   videoContainer.classList.add("showing");
 };
 
+const videoEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, { method: "POST" });
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -90,3 +95,4 @@ video.addEventListener("timeupdate", handleTimeupdate);
 timeRange.addEventListener("input", handleTimeChange);
 screenBtn.addEventListener("click", handleScreenClick);
 videoContainer.addEventListener("mouseenter", handleMouseEnter);
+video.addEventListener("ended", videoEnded);
