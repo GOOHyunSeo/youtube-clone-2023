@@ -1,7 +1,20 @@
 extends ../base
 
 block contents
-    video(src=`/${video.videoUrl}`,controls)
+    div#videoContainer
+        video(src=`/${video.videoUrl}`,controls)
+        div 
+            button#playBtn Play
+            button#muteBtn Mute 
+            input(type="range", min="0", max="1", step="0.1", value="0.5")#volumeRange
+            div
+                span#currentTime 00:00
+                span / 
+                span#totalTime 00:00
+                input(type="range", min="0", step="1", value="0")#timeRange
+            button#screenBtn Enter fullscreen
+
+//-
     h3=video.title
     h5 #{video.views} #{video.views === (0||1) ? "view" : "views"}
     small=video.createdAt
@@ -17,3 +30,6 @@ block contents
         a(href=`${video.id}/edit`) Edit Video &rarr;
         br
         a(href=`${video.id}/delete`) Delete Video &rarr;
+
+block scripts
+    script(src="/static/js/videoPlayer.js")
