@@ -298,3 +298,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata
 ### Fullscreen API
 
 https://developer.mozilla.org/ko/docs/Web/API/Fullscreen_API
+
+### API VIEWS 로 template을 렌더링하지 않는 views만들기
+
+### data attribute
+
+https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
