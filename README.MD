@@ -304,3 +304,11 @@ https://developer.mozilla.org/ko/docs/Web/API/Fullscreen_API
 ### data attribute
 
 https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
+
+### express-flash로 flash message 남기기
+
+https://github.com/RGBboy/express-flash#readme
+
+템플릿에 사용자에게 메세지를 남길 수 있게 해주는 미들웨어. 메세지는 session에 근거하기 때문에 한 사용자만이 볼 수 있다.
+
+`$ npm i express-flash`
