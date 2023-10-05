@@ -190,6 +190,7 @@ export const postEdit = async (req, res) => {
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly === true) {
+    req.flash("error", "Loggednin Google Account. Can't change Password.");
     return res.redirect("/");
   }
   return res.render("screens/change-password", { pageTitle: "CHANGE PW" });
@@ -224,8 +225,8 @@ export const postChangePassword = async (req, res) => {
 export const seeProfile = async (req, res) => {
   const { id } = req.params;
   const user = await userModel.findById(id).populate("videos");
-  console.log(user);
   if (!user) {
+    req.flash("error", "User does not exist.");
     return res.status(404).render("404", { pageTitle: "User Not Found" });
   }
   return res.render("screens/profile", {

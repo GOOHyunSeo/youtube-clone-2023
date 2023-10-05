@@ -37,6 +37,7 @@ export const postUpload = async (req, res) => {
     const user = await userModel.findById(_id);
     user.videos.push(newVideo._id);
     user.save();
+    req.flash("ok", "vidoe uploaded");
     return res.redirect("/");
   } catch (err) {
     console.log(err);
@@ -53,6 +54,7 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   if (String(req.session.user._id) !== String(video.owner)) {
+    req.flash("error", "Not authorized");
     return res.status(403).redirect("/");
   }
   return res.render("screens/edit", {
@@ -68,6 +70,7 @@ export const postEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   if (String(req.session.user._id) !== String(video.owner)) {
+    req.flash("error", "Not authorized");
     return res.status(403).redirect("/");
   }
   await videoModel.findByIdAndUpdate(id, {
@@ -75,6 +78,7 @@ export const postEdit = async (req, res) => {
     description,
     hashtags: videoModel.formatHashtags(hashtags),
   });
+  req.flash("ok", "Edit Video Success");
   return res.redirect(`/videos/${id}`);
 };
 
@@ -87,6 +91,7 @@ export const deleteVideo = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
   if (String(_id) !== String(video.owner)) {
+    req.flash("error", "Not authorized");
     return res.status(403).redirect("/");
   }
   await videoModel.findByIdAndDelete(id);
