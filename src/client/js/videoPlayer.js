@@ -11,6 +11,8 @@ const screenBtn = document.getElementById("screenBtn");
 let userVolume = 0.5;
 video.volume = userVolume;
 
+console.log(video.paused);
+
 const handlePlayClick = () => {
   if (video.paused) {
     video.play();
