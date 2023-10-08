@@ -312,3 +312,11 @@ https://github.com/RGBboy/express-flash#readme
 템플릿에 사용자에게 메세지를 남길 수 있게 해주는 미들웨어. 메세지는 session에 근거하기 때문에 한 사용자만이 볼 수 있다.
 
 `$ npm i express-flash`
+
+### getUserMedia()로 사용자의 navigation에서 카메라와 오디오 가져오기
+
+https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#using_getusermedia
+
+### MediaRecorder로 녹화하기
+
+https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder
