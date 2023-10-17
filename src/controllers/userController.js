@@ -229,6 +229,7 @@ export const seeProfile = async (req, res) => {
     req.flash("error", "User does not exist.");
     return res.status(404).render("404", { pageTitle: "User Not Found" });
   }
+  console.log(user);
   return res.render("screens/profile", {
     pageTitle: `${user.name}'s PROFILE`,
     user,

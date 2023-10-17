@@ -7,7 +7,6 @@ block contents
         input(name="name", type="text", placeholder="Name", required)
         input(name="password", type="password", placeholder="Password", required)
         input(type="submit", value="Login")
-        br
-        a(href="/users/google/start") Continue With GoogleAccount &rarr;
-    hr
-    a(href="/join") Create Account? &rarr;
+        include ../partials/social-login
+    div.auth-switch
+        a(href="/join") Create Account? &rarr;

@@ -1,0 +1,36 @@
+.upload__container {
+  width: 100%;
+  .upload__video {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    video {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+    .start__btn {
+      border-radius: 5px;
+      padding: 12px 20px;
+      background-color: rgba($color: $red, $alpha: 0.8);
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      display: block;
+      border: none;
+      transition: all 0.4s;
+      &:hover {
+        background-color: white;
+        color: $red;
+        border: 1px solid $red;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+  }
+}

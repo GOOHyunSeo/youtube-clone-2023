@@ -1,0 +1,36 @@
+// video mixin
+.video-mixin {
+  display: block;
+  margin-bottom: 30px;
+  .video-mixin__thumb {
+    height: 140px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: gainsboro;
+  }
+  .video-mixin__data {
+    padding: 15px 0px;
+    display: flex;
+    .video-mixin__owner-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .video-mixin__text {
+      padding-left: 15px;
+      font-size: 15px;
+      .video-mixin__title {
+        font-size: 20px;
+      }
+      .video-mixin__owner-name {
+        color: gray;
+        display: block;
+        padding: 5px 0px;
+      }
+      .video-mixin__meta {
+        color: gray;
+        margin-top: 5px;
+      }
+    }
+  }
+}

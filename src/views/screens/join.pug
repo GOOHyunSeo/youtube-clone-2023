@@ -10,5 +10,6 @@ block contents
         input(name="password2", type="password", placeholder="Check Password Match", required)
         input(name="location", type="text", placeholder="Location")
         input(type="submit", value="Join")
-    br
-    a(href="/login") Have Account? &rarr;
+        include ../partials/social-login
+    div.auth-switch
+        a(href="/login") Have Account? &rarr;

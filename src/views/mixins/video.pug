@@ -1,12 +1,17 @@
 mixin videoMixin(video)
-    div
-        h3
-            a(href=`http://localhost:4000/videos/${video.id}`)=video.title
-        h5 #{video.views} #{video.views === (0||1) ? "view" : "views"}
-        //- views가 0또는 1일때 view
-        small=video.createdAt
-        hr
-
-
-        
-
+    a(href=`http://localhost:4000/videos/${video.id}`).video-mixin
+        div.video-mixin__thumb
+        div.video-mixin__data
+            div
+                if video.owner.pictureUrl
+                    image.video-mixin__owner-avatar(src=`${video.owner.pictureUrl}` width=50 height=50)
+                else
+                    i.far.fa-user-circle.fa-2x
+            div.video-mixin__text
+                span.video-mixin__title=video.title
+                span.video-mixin__owner-name=video.owner.name
+                div.video-mixin__meta
+                    //- 다중삼항연산자 views작동확인
+                    span.video-mixin__views #{video.views === 0 ? "NO VIEW" : 1 ? `${video.views} view` : `${video.views} viewssssss`} • 
+                    //- date를 string으로 변환후 .substring(4,15)
+                    span.video-mixin__createdAt #{video.createdAt}

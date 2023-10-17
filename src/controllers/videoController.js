@@ -2,7 +2,10 @@ import videoModel from "../models/videoModel";
 import userModel from "../models/userModel";
 
 export const home = async (req, res) => {
-  const videos = await videoModel.find({}).sort({ createdAt: "desc" });
+  const videos = await videoModel
+    .find({})
+    .populate("owner")
+    .sort({ createdAt: "desc" });
   return res.render("screens/home", { pageTitle: "HOME", videos });
 };
 
@@ -105,15 +108,17 @@ export const search = async (req, res) => {
   let videos = [];
   let message;
   if (keyword) {
-    videos = await videoModel.find({
-      title: {
-        $regex: keyword,
-        $options: "i",
-      },
-    });
+    videos = await videoModel
+      .find({
+        title: {
+          $regex: keyword,
+          $options: "i",
+        },
+      })
+      .populate("owner");
     if (videos.length === 0) {
       console.log("no data found");
-      message = "NO DATA FOUND";
+      message = "NO VIDEO FOUND";
     }
   }
   return res.render("screens/search", { pageTitle: "SEARCH", videos, message });

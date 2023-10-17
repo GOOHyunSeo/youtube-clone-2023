@@ -1,0 +1,8 @@
+.social-login {
+  border-top: 1px solid black;
+  padding-top: 35px;
+  margin-top: 35px;
+  .social__btn--google {
+    background-color: transparent; //배경색을 없애고 투명하게 만들기
+  }
+}

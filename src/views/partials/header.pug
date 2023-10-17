@@ -1,0 +1,32 @@
+header
+    a(href="/").header__logo
+        i.fab.fa-youtube 
+        |  YouTube
+    nav 
+        ul 
+            li  
+                a(href="/search")
+                    i.fas.fa-search
+            if loggedIn
+                li  
+                    a(href="/videos/upload") Upload
+                li  
+                    a(href="/users/edit") Edit Profile
+                li  
+                    a(href="/users/logout") Logout
+                li.profile
+                    a(href=`/users/${loggedInUser._id}`).header__profile
+                        if loggedInUser.pictureUrl
+                            if loggedInUser.socialOnly
+                                image.header__avatar(src=`${loggedInUser.pictureUrl}` width=100 height=100) 
+                            else 
+                                image.header__avatar(src=`/${loggedInUser.pictureUrl}` width=100 height=100) 
+                            span.header__username #{loggedInUser.name}
+                        else
+                            i.far.fa-user-circle.fa-3x
+                            span.header__username #{loggedInUser.name}
+            else
+                li  
+                    a(href="/login").header__btn Login
+                li  
+                    a(href="/join") Join
