@@ -1,6 +1,6 @@
 .headline__title {
   padding: 10px 20px;
-  margin-bottom: 30px;
+  margin: 30px 0px;
   width: 110px;
   font-size: 18px;
   font-weight: 500;
@@ -15,8 +15,8 @@
 }
 .video-grid {
   display: grid;
-  gap: 40px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
 }
 .auth-switch {
   text-align: center;
@@ -28,5 +28,10 @@
 .avatar {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
+}
+.small-avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }

@@ -2,34 +2,51 @@ extends ../base
 
 block contents
     div#videoContainer(data-id=`${video._id}`)
-        video(src=`/${video.videoUrl}`,controls)
-        div 
-            button#playBtn Play
-            button#muteBtn Mute 
-            input(type="range", min="0", max="1", step="0.1", value="0.5")#volumeRange
+        video(src=`/${video.videoUrl}`)
+        div#videoControls.videoControls
+            div.videoControls__playRange
+                input(type="range", min="0", step="1", value="0")#timeRange.videoControls__timeline
+            div.videoControls__container
+                div.videoControls__play
+                    button#playBtn.videoControls__playBtn
+                        i.fas.fa-play.fa-lg
+                    div.videoControls__time
+                        span#currentTime 00:00
+                        span / 
+                        span#totalTime 00:00
+                div.videoControls__volume
+                    button#muteBtn.videoControls__muteBtn
+                        i.fas.fa-volume-up.fa-lg
+                    input(type="range", min="0", max="1", step="0.1", value="0.5")#volumeRange
+                div.videoControls__screen
+                    button#screenBtn.videoControls__screenBtn
+                        i.fas.fa-expand.fa-lg
+
+    div.videoData
+        h3.videoData__title=video.title
+        div.videoData__videoOwner
             div
-                span#currentTime 00:00
-                span / 
-                span#totalTime 00:00
-                input(type="range", min="0", step="1", value="0")#timeRange
-            button#screenBtn Enter fullscreen
-
-
-    h3=video.title
-    h5 #{video.views} #{video.views === (0||1) ? "view" : "views"}
-    small=video.createdAt
-    p=video.description
-    ul
-        each hashtags in video.hashtags
-            li=hashtags
-    h5
-        a(href=`/users/${video.owner._id}`) #{video.owner.name} 
-        |  is uploader
-    if String(loggedInUser._id) === String(video.owner._id)
-        hr
-        a(href=`${video.id}/edit`) Edit Video &rarr;
-        br
-        a(href=`${video.id}/delete`) Delete Video &rarr;
+                if video.owner.pictureUrl
+                    if video.owner.socialOnly
+                        image(src=`${video.owner.pictureUrl}` width=50 height=50).small-avatar 
+                    else
+                        image(src=`/${video.owner.pictureUrl}` width=50 height=50).small-avatar
+                else 
+                    i.far.fa-user-circle.fa-3x
+            a(href=`/users/${video.owner._id}`).videoOwner-name #{video.owner.name}
+        div.videoData__text
+            div.videoData__text-container
+                h5 #{video.views} #{video.views === (0||1) ? "view" : "views"}
+                span=video.createdAt
+            p=video.description
+            ul
+                each hashtags in video.hashtags
+                    li=hashtags
+        if String(loggedInUser._id) === String(video.owner._id)
+            hr
+            a(href=`${video.id}/edit`) Edit Video &rarr;
+            br
+            a(href=`${video.id}/delete`) Delete Video &rarr;
 
 block scripts
     script(src="/static/js/videoPlayer.js")

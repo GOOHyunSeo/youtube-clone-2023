@@ -1,0 +1,116 @@
+#videoContainer {
+  width: 100%;
+  position: relative;
+  video {
+    width: 100%;
+  }
+  .videoControls {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    &.showing {
+      opacity: 1;
+    }
+    position: absolute;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 13px;
+    bottom: 20px;
+    width: 97%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 12px;
+    box-sizing: border-box;
+    .videoControls__playRange {
+      margin-bottom: 12px;
+      input {
+        width: 100%;
+      }
+    }
+    .videoControls__container {
+      display: grid;
+      grid-template-columns: 150px 6fr 1fr auto;
+      gap: 20px;
+      align-items: center;
+      .videoControls__play {
+        display: flex;
+        align-items: center;
+        .videoControls__playBtn {
+          margin: 0px 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .videoControls__time {
+          font-size: 15px;
+          flex-wrap: nowrap;
+        }
+      }
+      .videoControls__volume {
+        display: flex;
+        align-items: center;
+        .videoControls__muteBtn {
+          margin: 0px 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .videoControls__screen {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .videoControls__screenBtn {
+          margin-left: 20px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+button {
+  all: unset;
+}
+
+.videoData {
+  margin-top: 20px;
+  .videoData__title {
+    font-size: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+  }
+  .videoData__videoOwner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    .videoOwner-name {
+      margin-left: 12px;
+      font-size: 19px;
+      font-weight: 500;
+    }
+  }
+  .videoData__text {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 18px;
+    .videoData__text-container {
+      display: flex;
+      margin-bottom: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      h5 {
+        margin-right: 10px;
+      }
+    }
+    ul {
+      margin-top: 10px;
+      color: blue;
+    }
+  }
+}
