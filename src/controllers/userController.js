@@ -52,16 +52,18 @@ export const postLogin = async (req, res) => {
   const pageTitle = "LOGIN";
   const userSocialOnly = await userModel.findOne({ name, socialOnly: true });
   if (userSocialOnly) {
+    req.flash("error", "This Name is created in Google Acount");
     return res.status(400).render("screens/login", {
       pageTitle,
-      err_message: "This Name is created in Google Acount",
+      // err_message: "This Name is created in Google Acount",
     });
   }
   const user = await userModel.findOne({ name, socialOnly: false });
   if (!user) {
+    req.flash("error", "This Name does not exists.");
     return res.status(400).render("screens/login", {
       pageTitle,
-      err_message: "This Name does not exists.",
+      // err_message: "This Name does not exists.",
     });
   }
   const ok = await bcrypt.compare(password, user.password);
@@ -229,7 +231,6 @@ export const seeProfile = async (req, res) => {
     req.flash("error", "User does not exist.");
     return res.status(404).render("404", { pageTitle: "User Not Found" });
   }
-  console.log(user);
   return res.render("screens/profile", {
     pageTitle: `${user.name}'s PROFILE`,
     user,

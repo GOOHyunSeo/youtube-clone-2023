@@ -1,12 +1,7 @@
-mixin videoMixin(video)
+mixin profileVideoMixin(video)
     a(href=`http://localhost:4000/videos/${video.id}`).video-mixin
         div.video-mixin__thumb
         div.video-mixin__data
-            div.video-mixin__avatar
-                if video.owner.pictureUrl
-                    image.video-mixin__owner-avatar(src=`${video.owner.pictureUrl}` width=50 height=50)
-                else
-                    i.far.fa-user-circle.fa-2x
             div.video-mixin__text
                 span.video-mixin__title=video.title
                 span.video-mixin__owner-name=video.owner.name

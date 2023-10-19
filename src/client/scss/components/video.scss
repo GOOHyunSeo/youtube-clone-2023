@@ -3,7 +3,7 @@
   display: block;
   margin-bottom: 30px;
   .video-mixin__thumb {
-    height: 140px;
+    height: 200px;
     border-radius: 10px;
     width: 100%;
     background-color: gainsboro;
@@ -11,13 +11,15 @@
   .video-mixin__data {
     padding: 15px 0px;
     display: flex;
-    .video-mixin__owner-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .video-mixin__avatar {
+      padding-right: 15px;
+      .video-mixin__owner-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
     }
     .video-mixin__text {
-      padding-left: 15px;
       font-size: 15px;
       .video-mixin__title {
         font-size: 20px;

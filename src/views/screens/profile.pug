@@ -1,18 +1,23 @@
 extends ../base
-include ../mixins/video
+include ../mixins/profileVideo
 
 block contents
     div.profile__data
         if user.pictureUrl
             if user.socialOnly
-                image(src=`${user.pictureUrl}` width=100 height=100) 
+                image(src=`${user.pictureUrl}` width=100 height=100).avatar 
             else
-                image(src=`/${user.pictureUrl}` width=100 height=100) 
+                image(src=`/${user.pictureUrl}` width=100 height=100).avatar
         else 
             i.far.fa-user-circle.fa-5x
         h3=user.name
+    
+    div.headline__title Videos
     div.video-grid
         each video in user.videos 
-            +videoMixin(video)
+            +profileVideoMixin(video)
         else 
-            span.empty__message Sorry nothing found..
+            span.empty__message Sorry nothing found.. :(
+    
+    if String(loggedInUser._id) === String(user._id)
+        div.headline__title Comments
